@@ -24,7 +24,24 @@ program.on('--help', function(){
 });
 
 program.parse(process.argv);
+var additionalArgs = program.args;
 
-console.log('You chose: ');
-console.log('Directory: %s', program.directory);
-console.log('Remaining args:', program.args);
+switch (additionalArgs[0]) {
+  case undefined:
+    console.log('list');
+    break;
+  case 'init':
+    console.log('init');
+    break;
+  case 'check':
+    console.log('check');
+    break;
+  case 'add':
+    console.log('add ' + additionalArgs[1]);
+    break;
+  case 'create':
+    console.log('create ' + additionalArgs[1]);
+    break;
+  default:
+    console.log('generate ' + additionalArgs[0]);
+}
