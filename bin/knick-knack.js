@@ -24,11 +24,14 @@ program.on('--help', function(){
 });
 
 program.parse(process.argv);
-var additionalArgs = program.args;
+var additionalArgs = program.args,
+    directory      = program.directory;
 
 switch (additionalArgs[0]) {
   case undefined:
     console.log('list');
+    var list = require('../lib/list');
+    list.listProjects(directory);
     break;
   case 'init':
     console.log('init');
