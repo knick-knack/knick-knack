@@ -3,8 +3,6 @@ import sys
 from fabric.api import *
 from fabric.contrib import *
 
-from defaults import fab
-
 import setup, {%= name %}, deploy
 
 @task(default=True)
