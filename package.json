@@ -2,10 +2,18 @@
   "name": "knick-knack",
   "version": "0.0.1",
   "description": "A language agnostic project scaffolding tool.",
+  "author": "Michael Müller",
   "main": "bin/knick-knack.js",
   "dependencies": {
     "commander": "^2.3.0",
     "glob": "^4.0.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-jshint": "^1.8.4",
+    "gulp-mocha": "^1.0.0",
+    "mocha-sinon": "^1.1.3",
+    "chai": "^1.9.1"
   },
   "directories": {
     "example": "examples"
@@ -22,17 +30,12 @@
     "tool",
     "cli"
   ],
-  "author": "Michael Müller",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/haimich/knick-knack/issues"
   },
   "homepage": "https://github.com/haimich/knick-knack",
-  "devDependencies": {
-    "gulp": "^3.8.7",
-    "gulp-jshint": "^1.8.4",
-    "gulp-mocha": "^1.0.0",
-    "mocha-sinon": "^1.1.3",
-    "chai": "^1.9.1"
+  "scripts": {
+    "test": "gulp test"
   }
 }
