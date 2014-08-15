@@ -1,9 +1,16 @@
-var jshint = require('gulp-jshint'),
-    gulp   = require('gulp');
+var gulp   = require('gulp'),
+    jshint = require('gulp-jshint'),
+    mocha  = require('gulp-mocha');
 
 var paths = {
-  scripts: ['./lib/*.js', './bin/*.js']
+  scripts: ['./lib/**/*.js', './bin/**/*.js'],
+  tests: ['./test/**/*.js']
 };
+
+gulp.task('test', function () {
+  return gulp.src(paths.tests, { read: false })
+    .pipe(mocha({reporter: 'nyan'}));
+});
 
 gulp.task('lint', function() {
   return gulp.src(paths.scripts)
@@ -11,4 +18,4 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('default', ['lint']);
+gulp.task('default', ['lint', 'test']);
