@@ -26,4 +26,9 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('default'));
 });
 
+gulp.task('watch', function() {
+  gulp.watch(paths.scripts, ['test']);
+  gulp.watch(paths.tests, ['test']);
+});
+
 gulp.task('default', ['lint', 'test']);
