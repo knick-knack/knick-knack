@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/haimich/knick-knack.svg?branch=master)
+
 knick-knack
 ===========
 
