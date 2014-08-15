@@ -6,7 +6,8 @@
   "main": "bin/knick-knack.js",
   "dependencies": {
     "commander": "^2.3.0",
-    "glob": "^4.0.5"
+    "glob": "^4.0.5",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "gulp": "^3.8.7",

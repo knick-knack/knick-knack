@@ -2,8 +2,9 @@
 
 'use strict';
 
-var program = require('commander');
-var projectVersion = require('../package.json').version;
+var program        = require('commander'),
+    projectVersion = require('../package.json').version,
+    _              = require('lodash');
 
 program
   .version(projectVersion)
@@ -27,11 +28,15 @@ program.parse(process.argv);
 var additionalArgs = program.args,
     directory      = program.directory;
 
+/* Find the right subroutine to call */
+var list = require('../lib/list')
+
 switch (additionalArgs[0]) {
   case undefined:
-    console.log('list');
-    var list = require('../lib/list');
-    list.listProjects(directory);
+    var templates = list.listProjects(directory);
+    _.forEach(templates, function(templateName) {
+      console.log(templateName);
+    });
     break;
   case 'init':
     console.log('init');
