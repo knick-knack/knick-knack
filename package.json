@@ -27,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/haimich/knick-knack/issues"
   },
-  "homepage": "https://github.com/haimich/knick-knack"
+  "homepage": "https://github.com/haimich/knick-knack",
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-jshint": "^1.8.4"
+  }
 }
