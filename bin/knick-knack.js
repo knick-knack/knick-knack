@@ -35,7 +35,12 @@ switch (additionalArgs[0]) {
   case undefined:
     var templates = list.listProjects(directory);
     _.forEach(templates, function(templateName) {
+      console.log('A valid template name must be specified.\n');
+      console.log('Available templates:');
       console.log(templateName);
+      console.log('\n');
+      console.log('You can run a template with "knick-knack TEMPLATE".\n');
+      console.log('For more information see https://github.com/haimich/knick-knack');
     });
     break;
   case 'init':
