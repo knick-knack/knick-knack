@@ -4,7 +4,8 @@
 
 var program        = require('commander'),
     projectVersion = require('../package.json').version,
-    _              = require('lodash');
+    _              = require('lodash'),
+    chalk          = require('chalk');
 
 program
   .version(projectVersion)
@@ -35,8 +36,8 @@ switch (additionalArgs[0]) {
   case undefined:
     var templates = list.listProjects(directory);
     _.forEach(templates, function(templateName) {
-      console.log('A valid template name must be specified.\n');
-      console.log('Available templates:');
+      console.log(chalk.yellow('A valid template name must be specified.\n'));
+      console.log(chalk.green('Available templates:'));
       console.log(templateName);
       console.log('\n');
       console.log('You can run a template with "knick-knack TEMPLATE".\n');
