@@ -6,6 +6,7 @@ var program        = require('commander'),
     projectVersion = require('../package.json').version,
     _              = require('underscore'),
     chalk          = require('chalk'),
+    logSymbols     = require('log-symbols'),
     defaultDir     = process.env.HOME + '/.knick-knack';
 
 program
@@ -38,14 +39,14 @@ switch (additionalArgs[0]) {
   case undefined:
     var templates = list.listProjects(directory);
     if (_.size(templates) >= 1) {
-      console.log(chalk.yellow('A valid template name must be specified.\n'));
+      console.log(chalk.yellow(' A valid template name must be specified.\n'));
       console.log(chalk.cyan.underline('Available templates:'));
       console.log(templates.join('\n'));
       console.log('\n');
       console.log('You can generate a new project with "knick-knack TEMPLATE".\n');
       console.log('For more information see https://github.com/haimich/knick-knack');
     } else {
-      console.log(chalk.magenta('No templates found in "' + directory + '".\n'));
+      console.log(logSymbols.warning + chalk.magenta(' No templates found in "' + directory + '".\n'));
       console.log(chalk.blue('Is this your first time using knick-knack? If you want to set up your project template folder you can simply run ') + chalk.blue.bold('knick-knack init'));
     }
     break;
