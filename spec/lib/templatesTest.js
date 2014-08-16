@@ -1,4 +1,4 @@
-var sut           = require('../../../lib/util/template'),
+var sut           = require('../../lib/template'),
     exampleFolder = process.cwd() + '/spec/testdata/';
 
 describe('isValidProjectTemplate', function() {
