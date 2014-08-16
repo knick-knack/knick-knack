@@ -43,7 +43,7 @@ switch (additionalArgs[0]) {
       console.log(chalk.cyan.underline('Available templates:'));
       console.log(templates.join('\n'));
       console.log('\n');
-      console.log('You can generate a new project with "knick-knack TEMPLATE".\n');
+      console.log('You can generate a new project with ' + chalk.blue.bold('knick-knack TEMPLATE') + '\n');
       console.log('For more information see https://github.com/haimich/knick-knack');
     } else {
       console.log(logSymbols.warning + chalk.magenta(' No templates found in "' + directory + '".\n'));
