@@ -5,11 +5,12 @@
 var program        = require('commander'),
     projectVersion = require('../package.json').version,
     _              = require('underscore'),
-    chalk          = require('chalk');
+    chalk          = require('chalk'),
+    defaultDir     = process.env.HOME + '/.knick-knack';
 
 program
   .version(projectVersion)
-  .option('-d, --directory [folder]', 'Specify the folder where knick-knack should look for project templates [~/.knick-knack]', '~/.knick-knack');
+  .option('-d, --directory [folder]', 'Specify the folder where knick-knack should look for project templates [' + defaultDir + ']', defaultDir);
 
 //specify additional help text
 program.on('--help', function(){
@@ -29,10 +30,10 @@ program.parse(process.argv);
 var additionalArgs = program.args,
     directory      = program.directory;
 
-/* Find the right subroutine to call */
 var list = require('../lib/list'),
     init = require('../lib/init');
 
+/* Find the right subroutine to call */
 switch (additionalArgs[0]) {
   case undefined:
     var templates = list.listProjects(directory);
