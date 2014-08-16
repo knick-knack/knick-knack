@@ -38,7 +38,7 @@ switch (additionalArgs[0]) {
     var templates = list.listProjects(directory);
     _.forEach(templates, function(templateName) {
       console.log(chalk.yellow('A valid template name must be specified.\n'));
-      console.log(chalk.green.underline('Available templates:'));
+      console.log(chalk.cyan.underline('Available templates:'));
       console.log(templateName);
       console.log('\n');
       console.log('You can run a template with "knick-knack TEMPLATE".\n');
