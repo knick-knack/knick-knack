@@ -31,8 +31,9 @@ program.parse(process.argv);
 var additionalArgs = program.args,
     directory      = program.directory;
 
-var list = require('../lib/list'),
-    init = require('../lib/init');
+var list     = require('../lib/list'),
+    init     = require('../lib/init'),
+    generate = require('../lib/generate');
 
 /* Find the right subroutine to call */
 switch (additionalArgs[0]) {
@@ -63,5 +64,5 @@ switch (additionalArgs[0]) {
     console.log('create ' + additionalArgs[1]);
     break;
   default:
-    console.log('generate ' + additionalArgs[0]);
+    generate.createProject(additionalArgs[0]);
 }
