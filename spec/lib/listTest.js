@@ -12,8 +12,8 @@ describe('listProjects', function() {
     it('should return a list of the names of the project templates', function() {
       var result = sut.listProjects(exampleFolder);
       result.length.should.equal(2);
-      result[0].should.equal('python/fabric');
-      result[1].should.equal('sample_project');
+      result[0].should.equal('python/fabric: Create a Fabric project.');
+      result[1].should.equal('sample_project: Create a sample project.');
     });
   });
 })
