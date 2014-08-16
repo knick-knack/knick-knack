@@ -5,10 +5,3 @@ description: Create a Fabric project for automatic installation and deployment o
 partials:
   - general/readme
   - python/config
-
-checks:
-  - dolly
-  - git
-  - yp
-  - jenkins
-  - tests/unittest
