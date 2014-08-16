@@ -1,0 +1,6 @@
+hosts: 
+  - 'TODO hostname dev'
+
+{%= name %}:
+  user: 'user'
+  password: 'pass'

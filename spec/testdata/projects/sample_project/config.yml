@@ -1,0 +1,6 @@
+type: sample
+language: c++
+description: Create a sample project.
+
+partials:
+  - general/readme
