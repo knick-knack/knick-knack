@@ -1,4 +1,4 @@
-description: Create a Fabric project for automatic installation and deployment of services.
+description: Create a Fabric project.
 
 partials:
   - general/readme
