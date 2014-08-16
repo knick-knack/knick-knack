@@ -28,6 +28,11 @@ describe('readDescription()', function() {
 
 describe('readConfigFile()', function() {
   it('should read the config file and return the content as an object', function() {
-    sut.readConfigFile(exampleFolder + '/projects/python/fabric').should.be.ok;
+    var config = sut.readConfigFile(exampleFolder + '/projects/python/fabric');
+    config.should.be.ok;
+    config.description.should.equal('Create a Fabric project.');
+    config.partials[0].should.equal('general/readme');
+    config.partials[1].should.equal('python/config');
+    config.defaults.name.should.equal('test-project');
   });
 });
