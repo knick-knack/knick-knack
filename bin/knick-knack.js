@@ -13,7 +13,7 @@ program
 
 //specify additional help text
 program.on('--help', function(){
-  console.log('  Commands:');
+  console.log('  ' + chalk.cyan.underline('Commands:'));
   console.log('');
   console.log('    $ knick-knack                    List all available project templates');
   console.log('    $ knick-knack init               Initialize a valid knick-knack project templates folder');
@@ -37,7 +37,7 @@ switch (additionalArgs[0]) {
     var templates = list.listProjects(directory);
     _.forEach(templates, function(templateName) {
       console.log(chalk.yellow('A valid template name must be specified.\n'));
-      console.log(chalk.green('Available templates:'));
+      console.log(chalk.green.underline('Available templates:'));
       console.log(templateName);
       console.log('\n');
       console.log('You can run a template with "knick-knack TEMPLATE".\n');
