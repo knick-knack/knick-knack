@@ -30,7 +30,8 @@ var additionalArgs = program.args,
     directory      = program.directory;
 
 /* Find the right subroutine to call */
-var list = require('../lib/list')
+var list = require('../lib/list'),
+    init = require('../lib/init');
 
 switch (additionalArgs[0]) {
   case undefined:
@@ -45,7 +46,7 @@ switch (additionalArgs[0]) {
     });
     break;
   case 'init':
-    console.log('init');
+    init.createTemplateFolder(directory);
     break;
   case 'check':
     console.log('check');
