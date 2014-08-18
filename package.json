@@ -30,6 +30,7 @@
     "type": "git",
     "url": "https://github.com/haimich/knick-knack.git"
   },
+  "preferGlobal": true,
   "keywords": [
     "generate",
     "template",
