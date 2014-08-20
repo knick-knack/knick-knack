@@ -8,8 +8,12 @@ Templates are the main entity in knick-knack. A template is a folder containing 
 
 A template needs to have a config file that allows customizations bythe user. When a user wants to scaffold a project we have to check for variables used in the template files. These are placeholders that get replaced with the answers the user gives during the generation process. 
 
+A template may have a "process.js" file that allows the user to program behavior that gets executed before (pre) or after (post) the template has been processed. 
+
 ### Template folder
-All templates reside in a specific folder, that can be passed to knick-knack as a command line argument. When not given it assumes that the templates are located under ~/.knick-knack.
+All templates reside in a specific folder, that can be passed to knick-knack as a command line argument. When not given it assumes that the templates are located under ~/.knick-knack. The knnick-knack cli command "init" creates this directory when called. 
+
+The template folder may contain a file "knick-knack.yml" that contains configuration options that are valid for all templates. 
 
 ### Partials
 Partials are templates that are included in other templates to make it possible to reuse files. For example you can define a partial which contains a readme and include that partial in every template you define. 
