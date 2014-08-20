@@ -19,7 +19,7 @@ The template folder may contain a file "knick-knack.yml" that contains configura
 Partials are templates that are included in other templates to make it possible to reuse files. For example you can define a partial which contains a readme and include that partial in every template you define. When partials are defined as optional in the config file the user gets asked whether he wants to include them or not (good for things like creation of git projects). 
 
 ### Generation Process
-
+* see http://www.plantuml.com/plantuml/png/RSv13e9038NX_PpY1JTm1LmOBs28DnYX0nE7bamBnjix6gCBtJLj-kTJyzdWN7icFs1CSl49lN28u_wzD9gNv8q-QnS3wfEV2Io6CMx4XmOs4Rlsg5S4oU1otZlY8OPdVELlPibKDoNUPUb95I4cqbAzJML0tHLGz4cHADYXSS1kpFvUBFsQDGeZP9bH_RDLg8MfV6wKC10jpSlmAlymHEtfS6goF000
 
 ### Variable substitution
 The files in a template may contain variables for substitution during the generation. It's possible to use variables in file names, too. We decided to use the [Mustache](http://mustache.github.io/) templating library for parsing the files. 
