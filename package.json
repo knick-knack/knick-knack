@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A language agnostic project scaffolding tool.",
   "author": "Michael Müller",
+  "contributors": [{ "name" : "Johannes Kissel"}],
   "main": "bin/knick-knack.js",
   "dependencies": {
     "commander": "^2.3.0",
