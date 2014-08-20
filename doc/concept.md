@@ -16,7 +16,7 @@ All templates reside in a specific folder, that can be passed to knick-knack as 
 The template folder may contain a file "knick-knack.yml" that contains configuration options that are valid for all templates. 
 
 ### Partials
-Partials are templates that are included in other templates to make it possible to reuse files. For example you can define a partial which contains a readme and include that partial in every template you define. 
+Partials are templates that are included in other templates to make it possible to reuse files. For example you can define a partial which contains a readme and include that partial in every template you define. When partials are defined as optional in the config file the user gets asked whether he wants to include them or not (good for things like creation of git projects). 
 
 ### Generation Process
 
