@@ -6,3 +6,4 @@ After using grunt-init for some time at work we felt that it had some shortcomin
 ### 
 
 * projects sind dann die aus den Templates erzeugten Projekte
+* 
