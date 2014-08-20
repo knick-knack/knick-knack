@@ -10,3 +10,10 @@ A template needs to have a config file that allows customizations bythe user. Wh
 
 ### Template folder
 All templates reside in a specific folder, that can be passed to knick-knack as a command line argument. When not given it assumes that the templates are located under ~/.knick-knack.  
+
+
+### Generation Process
+
+
+### Variable substitution
+The files in a template may contain variables for substitution during the generation. It's possible to use variables in file names, too. We decided to use the [Mustache](http://mustache.github.io/) templating library for parsing the files. 
