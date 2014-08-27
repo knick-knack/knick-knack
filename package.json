@@ -6,7 +6,6 @@
   "contributors": [{ "name" : "Johannes Kissel"}],
   "dependencies": {
     "commander": "^2.3.0",
-    "glob": "^4.0.5",
     "chalk": "^0.5.1",
     "inquirer": "^0.6.0",
     "underscore": "^1.6.0",

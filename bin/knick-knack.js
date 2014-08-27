@@ -38,7 +38,7 @@ var list     = require('../lib/list'),
 /* Find the right subroutine to call */
 switch (additionalArgs[0]) {
   case undefined:
-    var templates = list.listProjects(directory);
+    var templates = list.listTemplates(directory);
     if (_.size(templates) >= 1) {
       console.log(chalk.yellow(' A valid template name must be specified.\n'));
       console.log(chalk.cyan.underline('Available templates:'));

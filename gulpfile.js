@@ -12,11 +12,7 @@ var paths = {
 gulp.task('test', function () {
   return gulp.src(paths.tests, { read: false })
     .pipe(mocha({
-      reporter: 'nyan',
-      globals: {
-        should: chai.should(),
-        sinon: sinon
-      }
+      reporter: 'nyan'
     }));
 });
 
@@ -27,6 +23,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('watch', function() {
+  gulp.start('test');
   gulp.watch(paths.scripts, ['test']);
   gulp.watch(paths.tests, ['test']);
 });
