@@ -2,7 +2,8 @@
 
 'use strict';
 
-var program        = require('commander'),
+var fs             = require('fs'),
+    program        = require('commander'),
     projectVersion = require('../package.json').version,
     _              = require('underscore'),
     chalk          = require('chalk'),
@@ -34,6 +35,11 @@ var additionalArgs = program.args,
 var list     = require('../lib/list'),
     init     = require('../lib/init'),
     generate = require('../lib/generate');
+
+if (! fs.existsSync(directory) || ! fs.statSync(directory).isDirectory()) {
+  console.log(chalk.yellow('"' + directory + '" is no directory. Please specify a directory for your templates.'));
+  return;
+}
 
 /* Find the right subroutine to call */
 switch (additionalArgs[0]) {
