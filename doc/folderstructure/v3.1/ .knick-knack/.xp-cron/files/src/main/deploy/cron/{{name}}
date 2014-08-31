@@ -1,0 +1,2 @@
+MAILTO=idev-cron@1and1.com
+USE_XP=BASEPATH/MODULENAME/lib/bootstrap/:BASEPATH/MODULENAME/

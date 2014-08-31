@@ -1,0 +1,21 @@
+type: lib
+language: xp
+description: Create an XP library project with Maven support.
+
+partials:
+  - general/readme
+  - general/makefile
+  - general/changelog
+    ask: Do you want to add a changelog file?
+  - xp/maven
+  - xp/projectpth
+  - xp/src-simple
+  - xp/unittest
+
+defaults:
+  - groupId: org.mycompany.lib
+
+checks:
+  - git
+  - jenkins
+  - tests/unittest

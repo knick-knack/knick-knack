@@ -1,0 +1,21 @@
+description: Create an XP api project with Maven support.
+
+partials:
+  - general/readme
+  - general/makefile
+  - xp/installapp
+  - xp/maven
+  - xp/projectpth
+  - xp/config
+  - xp/webapp
+  - xp/apache
+  - xp/unittest
+
+optionPartials:
+  - xp/integrationtest
+
+variables:
+  - name: users-api
+  - groupId: org.mycompany.app
+  - xpInstallStage: cluster-services-stage
+  - xpInstallProd: cluster-services

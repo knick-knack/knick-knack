@@ -1,0 +1,30 @@
+type: api
+language: xp
+description: Create an XP api project with Maven support.
+after: You're all set! Don't forget to create the Apache VHost file under /etc/apache2/sites-available for local development.
+
+partials:
+  - general/readme
+  - general/makefile
+  - xp/installapp
+  - xp/maven
+  - xp/projectpth
+  - xp/config
+  - xp/webapp
+  - xp/apache
+  - xp/unittest
+  - xp/integrationtest
+    ask: Do you want to add integrationtests to your project?
+
+defaults:
+  - name: users-api
+  - groupId: org.mycompany.app
+  - xpInstallStage: cluster-services-stage
+  - xpInstallProd: cluster-services
+
+checks:
+  - deployed
+  - git
+  - jenkins
+  - tests/unittest
+  - tests/integrationtests

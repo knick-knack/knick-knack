@@ -1,0 +1,5 @@
+description: Create a dropwizard project.
+
+partials:
+  - general/readme
+  - java/dropwizard-maven

@@ -1,0 +1,13 @@
+description: Create an XP api client project with Maven support.
+
+partials:
+  - general-readme
+  - general-makefile
+  - xp-maven
+  - xp-projectpth
+  - xp-unittest
+  - xp-integrationtest
+
+variables:
+  - name: users-api-client
+  - groupId: org.mycompany.lib

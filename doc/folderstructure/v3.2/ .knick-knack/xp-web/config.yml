@@ -1,0 +1,17 @@
+description: Create an XP web project with Maven support.
+
+partials:
+  - general/readme
+  - general/makefile
+  - partials/xp-maven
+  - partials/xp-projectpth
+  - partials/xp-config
+  - partials/xp-webapp
+  - partials/xp-apache
+  - partials/xp-unittest
+
+variables:
+  - name: one-scriptlet
+  - groupId: org.mycompany.app
+  - xpInstallStage: cluster-services-stage
+  - xpInstallProd: cluster-services

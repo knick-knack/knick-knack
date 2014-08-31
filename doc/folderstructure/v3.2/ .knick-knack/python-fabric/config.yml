@@ -1,0 +1,5 @@
+description: Create a Fabric project for automatic installation and deployment of services.
+
+partials:
+  - general/readme
+  - partials/python-config

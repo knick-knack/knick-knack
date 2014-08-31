@@ -1,0 +1,54 @@
+apply plugin: 'java'
+apply plugin: 'fatjar'
+apply plugin: 'application'
+
+group = "{%= groupId %}"
+version = "{%= version %}"
+//artifact id by default is set to folder name
+
+mainClassName = '{%= package %}.MyService'
+
+ext {
+    dropwizardVersion = '0.6.2'    
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath group: 'eu.appsatori', name: 'gradle-fatjar-plugin', version: '0.2'
+    }
+}
+
+dependencies {
+    compile group: 'com.yammer.dropwizard', name: 'dropwizard-core', version: dropwizardVersion
+    compile group: 'com.yammer.dropwizard', name: 'dropwizard-db', version: dropwizardVersion
+    compile group: 'com.yammer.dropwizard', name: 'dropwizard-jdbi', version: dropwizardVersion
+    compile group: 'com.yammer.dropwizard', name: 'dropwizard-auth', version: dropwizardVersion
+}
+
+fatJar {
+    classifier 'fat'
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
+
+run {
+    args 'server', 'src/main/resources/{%= name %}.yml'
+}

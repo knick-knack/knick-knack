@@ -1,0 +1,18 @@
+[program:MODULENAME]
+command=xpcli -c etc/SERVER_PROFILE/ {%= package %}.SampleCommand
+process_name=MODULENAME
+autorestart=true
+startsecs=5
+exitcodes=0,143
+stopasgroup=true
+killasgroup=true
+user=www-data
+directory=BASEPATH/MODULENAME
+redirect_stderr=true
+stdout_logfile=/var/log/xp/supervisor.MODULENAME.log
+stdout_logfile_maxbytes=5MB
+stdout_logfile_backups=10
+stderr_logfile=/var/log/xp/supervisor.MODULENAME.log
+stderr_logfile_maxbytes=5MB
+stderr_logfile_backups=10
+environment=USE_XP="BASEPATH/MODULENAME/lib/bootstrap/:BASEPATH/MODULENAME/", SYBASE="/usr/sybase"

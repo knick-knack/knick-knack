@@ -1,0 +1,10 @@
+variables:
+  - name
+  - groupId
+  - type
+  - package
+  - packageSuffix
+  - version
+  - description
+  - scmConnection
+  - scmUrl

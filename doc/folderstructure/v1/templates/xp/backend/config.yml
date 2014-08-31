@@ -1,0 +1,26 @@
+type: backend
+language: xp
+description: Create an XP backend project with Maven support.
+
+partials:
+  - general/readme
+  - general/makefile
+  - xp/maven
+  - xp/projectpth
+  - xp/config
+  - xp/unittest
+  - xp/cron
+    ask: Do you want to add a cron job to your project?
+  - xp/supervisord
+    ask: Do you want to add supervisor support for your project?
+
+defaults:
+  - groupId: org.mycompany.app
+  - xpInstallStage: dev
+  - xpInstallProd: high
+
+checks:
+  - deployed
+  - git
+  - jenkins
+  - tests/unittest

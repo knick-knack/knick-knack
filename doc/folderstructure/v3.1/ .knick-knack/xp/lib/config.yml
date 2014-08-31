@@ -1,0 +1,15 @@
+description: Create an XP library project with Maven support.
+
+partials:
+  - general/readme
+  - general/makefile
+  - xp/maven
+  - xp/projectpth
+  - xp/src-simple
+  - xp/unittest
+
+optional:
+  - general/changelog
+
+variables:
+  - groupId: org.mycompany.lib

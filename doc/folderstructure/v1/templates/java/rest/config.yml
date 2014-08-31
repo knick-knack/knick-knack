@@ -1,0 +1,15 @@
+# the dropwizard project has a Makefile that overwrites the default one
+type: api
+language: java
+description: Create a dropwizard project.
+after: You're all set! You can start the server with `make run`
+
+partials:
+  - general/readme
+  - java/dropwizard-maven
+
+checks:
+  - deployed
+  - git
+  - jenkins
+  - tests/unittest

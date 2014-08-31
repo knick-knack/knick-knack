@@ -1,0 +1,18 @@
+description: Create an XP backend project with Maven support.
+
+partials:
+  - general-readme
+  - general-makefile
+  - xp-maven
+  - xp-projectpth
+  - xp-config
+  - xp-unittest
+  
+optionalPartials
+  - xp-cron
+  - xp-supervisord
+
+variables:
+  - groupId: org.mycompany.app
+  - xpInstallStage: dev
+  - xpInstallProd: high
