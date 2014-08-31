@@ -1,2 +1,6 @@
 variables:
   name: My awesome project
+
+optionalPartials:
+  - git
+  - jenkins
