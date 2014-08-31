@@ -17,13 +17,10 @@ program
 program.on('--help', function () {
   console.log('  ' + chalk.cyan.underline('Commands:'));
   console.log();
-  console.log('    $ knick-knack [list]              List all available knick-knack templates');
-  console.log('    $ knick-knack  init               Initialize a knick-knack templates directory');
-  console.log('    $ knick-knack  xp-rest-client     Generate a new xp-rest-client project');
-  console.log('    $ knick-knack  check              Check which knick-knack templates were added to the project in the current directory');
-  console.log('    $ knick-knack  add general-readme Add a readme partial to the project in the current directory');
-  console.log('    $ knick-knack  create git-project Create a Git project for the project in the current directory');
-  console.log('    $ knick-knack  create jenkins-job Create a Jenkins job for the project in the current directory');
+  console.log('    $ knick-knack [list]             List all available knick-knack templates');
+  console.log('    $ knick-knack [template-name]    Generate a new project based on a template');
+  console.log('    $ knick-knack add general-readme Add a readme partial to the project in the current directory');
+  console.log('    $ knick-knack init               Initialize a knick-knack templates directory');
   console.log();
 });
 
