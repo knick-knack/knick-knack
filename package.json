@@ -31,6 +31,7 @@
   "preferGlobal": true,
   "keywords": [
     "generate",
+    "generator",
     "template",
     "scaffold",
     "project",
