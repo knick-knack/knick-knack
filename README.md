@@ -1,6 +1,6 @@
 ![Build Status](https://travis-ci.org/haimich/knick-knack.svg?branch=master)
 
-knick-knack
+WORK IN PROGRESS! knick-knack
 ===========
 
 A language agnostic project scaffolding tool similar to grunt-init and yeoman. When designing the command-line interface a strong focus was laid on usability.
