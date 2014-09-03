@@ -5,7 +5,8 @@
 var fs             = require('fs'),
     program        = require('commander'),
     chalk          = require('chalk'),
-    logSymbols     = require('log-symbols');
+    logSymbols     = require('log-symbols'),
+    multiline      = require('multiline');
 
 var projectVersion = require('../package.json').version,
     defaultDir     = process.env.HOME + '/.knick-knack';
@@ -34,8 +35,23 @@ var list     = require('../lib/list'),
     generate = require('../lib/generate');
 
 if (! fs.existsSync(directory) || ! fs.statSync(directory).isDirectory()) {
-  console.error(chalk.yellow('"' + directory + '" is no directory.'));
-  console.log('Is this your first time using knick-knack? If you want to set up your project templates directory you can simply run ' + chalk.blue.bold('knick-knack init'));
+  if (directory !== defaultDir) {
+    console.error(chalk.yellow('"' + directory + '" is not a valid directory.'));
+    return;
+  } else {
+    var data = multiline(function(){/*
+   /)))))))))
+  //) __   __\
+  C==/_o|^|o_\
+  |      _\  )
+   \   '---'/
+  _/`-. __.'_
+             \
+*/});
+    console.log(data);
+    console.log(chalk.white('This seems to be the first time you are using knick-knack.\n'));
+    console.log(chalk.white('If you allow me I would like to set up a new templates folder for you know!'));
+  }
   return;
 }
 
