@@ -6,7 +6,7 @@ var fs             = require('fs'),
     program        = require('commander'),
     chalk          = require('chalk'),
     logSymbols     = require('log-symbols'),
-    multiline      = require('multiline');
+    inquirer       = require('inquirer');
 
 var projectVersion = require('../package.json').version,
     defaultDir     = process.env.HOME + '/.knick-knack';
@@ -39,20 +39,21 @@ if (! fs.existsSync(directory) || ! fs.statSync(directory).isDirectory()) {
     console.error(chalk.yellow('"' + directory + '" is not a valid directory.'));
     return;
   } else {
-    var data = multiline(function(){/*
-   /)))))))))
-  //) __   __\
-  C==/_o|^|o_\
-  |      _\  )
-   \   '---'/
-  _/`-. __.'_
-             \
-*/});
-    console.log(data);
-    console.log(chalk.white('This seems to be the first time you are using knick-knack.\n'));
-    console.log(chalk.white('If you allow me I would like to set up a new templates folder for you know!'));
+    console.log('This seems to be the first time you are using knick-knack.\n');
+    
+    var continueQuestion = {
+      name: 'continue',
+      type: 'confirm',
+      message: 'May I suggest that you start the setup assistant for you?',
+      default: true
+    };
+    inquirer.prompt(continueQuestion, function(answer) {
+      if (answer.continue) {
+        init.createTemplateFolder(directory);
+      }
+    });
+    return;
   }
-  return;
 }
 
 switch (additionalArgs[0]) {
