@@ -4,3 +4,7 @@ variables:
 optionalPartials:
   - git
   - jenkins
+
+noProcess:
+  - 'Makefile'
+  - 'src/**/js/*'
