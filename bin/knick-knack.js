@@ -6,7 +6,8 @@ var fs             = require('fs'),
     program        = require('commander'),
     chalk          = require('chalk'),
     logSymbols     = require('log-symbols'),
-    inquirer       = require('inquirer');
+    inquirer       = require('inquirer'),
+    filesystem     = require('../lib/util/filesystem');
 
 var projectVersion = require('../package.json').version,
     defaultDir     = process.env.HOME + '/.knick-knack';
@@ -34,61 +35,71 @@ var list     = require('../lib/list'),
     init     = require('../lib/init'),
     generate = require('../lib/generate');
 
-if (! fs.existsSync(directory) || ! fs.statSync(directory).isDirectory()) {
-  if (directory !== defaultDir) {
-    console.error(chalk.yellow('"' + directory + '" is not a valid directory.'));
-    return;
-  } else {
-    console.log('This seems to be the first time you are using knick-knack.\n');
-    
-    var continueQuestion = {
-      name: 'continue',
-      type: 'confirm',
-      message: 'May I suggest that you start the setup assistant for you?',
-      default: true
-    };
-    inquirer.prompt(continueQuestion, function(answer) {
-      if (answer.continue) {
-        init.createTemplateFolder(directory);
-      }
-    });
-    return;
+function folderInvalid(name) {
+  if (! filesystem.folderExists(name) && name !== defaultDir && additionalArgs[0] !== 'init') {
+    //the user passed in an invalid folder with -d but did not want to create one with "init"
+    return true;
   }
+  return false;
+}
+
+if (folderInvalid(directory)) {
+  console.error(chalk.yellow('"' + directory + '" is not a valid directory.'));
+  return;
 }
 
 switch (additionalArgs[0]) {
-case 'list':
-case undefined:
-  var templates = list.listTemplates(directory);
-
-  if (templates.length > 0) {
-    console.log(chalk.yellow('A valid template name must be specified.'));
-    console.log();
-    console.log(chalk.cyan.underline('Available templates:'));
-    console.log(templates.join('\n'));
-    console.log();
-    console.log('You can generate a new project with ' + chalk.blue.bold('knick-knack TEMPLATE'));
-    console.log();
-    console.log('For more information see https://github.com/haimich/knick-knack');
-    console.log();
-  } else {
-    console.log(logSymbols.warning + chalk.magenta(' No templates found in "' + directory + '".'));
-    console.log();
-  }
-
-  break;
-case 'init':
-  init.createTemplateFolder(directory);
-  break;
-case 'check':
-  console.log('check');
-  break;
-case 'add':
-  console.log('add ' + additionalArgs[1]);
-  break;
-case 'create':
-  console.log('create ' + additionalArgs[1]);
-  break;
-default: // not a command, maybe a template name?
-  generate.createProject(additionalArgs[0]);
+  case 'init':
+    init.createTemplateFolder(directory);
+    break;
+  
+  case undefined:
+    if (! filesystem.folderExists(directory)) {
+      console.log('This seems to be the first time you\'re using knick-knack.\n');
+      
+      var continueQuestion = {
+        name: 'continue',
+        type: 'confirm',
+        message: 'May I suggest that you start the setup assistant for you?',
+        default: true
+      };
+      inquirer.prompt(continueQuestion, function(answer) {
+        if (answer.continue) {
+          init.createTemplateFolder(directory);
+        }
+      });
+      return;
+    }
+    
+    var templates = list.listTemplates(directory);
+  
+    if (templates.length > 0) {
+      console.log(chalk.yellow('A valid template name must be specified.'));
+      console.log();
+      console.log(chalk.cyan.underline('Available templates:'));
+      console.log(templates.join('\n'));
+      console.log();
+      console.log('You can generate a new project with ' + chalk.blue.bold('knick-knack TEMPLATE'));
+      console.log();
+      console.log('For more information see https://github.com/haimich/knick-knack');
+      console.log();
+    } else {
+      console.log(logSymbols.warning + chalk.magenta(' No templates found in "' + directory + '".'));
+      console.log();
+    }
+  
+    break;
+    
+  case 'check':
+    console.log('check');
+    break;
+  case 'add':
+    console.log('add ' + additionalArgs[1]);
+    break;
+  case 'create':
+    console.log('create ' + additionalArgs[1]);
+    break;
+    
+  default: // not a command, maybe a template name?
+    generate.createProject(additionalArgs[0]);
 }
