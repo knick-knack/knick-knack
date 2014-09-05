@@ -7,7 +7,7 @@ var fs             = require('fs'),
     chalk          = require('chalk'),
     logSymbols     = require('log-symbols'),
     inquirer       = require('inquirer'),
-    filesystem     = require('../lib/util/filesystem');
+    fsutil         = require('../lib/util/filesystem');
 
 var projectVersion = require('../package.json').version,
     defaultDir     = process.env.HOME + '/.knick-knack';
@@ -36,7 +36,7 @@ var list     = require('../lib/list'),
     generate = require('../lib/generate');
 
 function folderInvalid(name) {
-  if (! filesystem.folderExists(name) && name !== defaultDir && additionalArgs[0] !== 'init') {
+  if (! fsutil.folderExists(name) && name !== defaultDir && additionalArgs[0] !== 'init') {
     //the user passed in an invalid folder with -d but did not want to create one with "init"
     return true;
   }
@@ -54,7 +54,7 @@ switch (additionalArgs[0]) {
     break;
   
   case undefined:
-    if (! filesystem.folderExists(directory)) {
+    if (! fsutil.folderExists(directory)) {
       console.log('This seems to be the first time you\'re using knick-knack.\n');
       
       var continueQuestion = {
