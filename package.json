@@ -31,7 +31,10 @@
     "type": "git",
     "url": "https://github.com/haimich/knick-knack.git"
   },
-  "bin": "./bin/knick-knack.js",
+  "bin": {
+    "knick-knack": "./bin/knick-knack.js",
+    "kk": "./bin/knick-knack.js"
+  },
   "preferGlobal": true,
   "keywords": [
     "generate",
