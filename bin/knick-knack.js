@@ -14,14 +14,15 @@ var projectVersion = require('../package.json').version,
 
 program
   .version(projectVersion)
-  .option('-d, --directory [directory]', 'Specify the directory where knick-knack should look for templates [' + defaultDir + ']', defaultDir);
+  .option('-d, --directory [directory]', 'Specify the directory where knick-knack should look for templates [' + defaultDir + ']', defaultDir)
+  .option('-v, --verbose', 'Activate verbose mode');
 
 program.on('--help', function () {
   console.log('  ' + chalk.cyan.underline('Commands:'));
   console.log();
-  console.log('    $ knick-knack [list]             List all available knick-knack templates');
+  console.log('    $ knick-knack                    List all available knick-knack templates');
   console.log('    $ knick-knack [template-name]    Generate a new project based on a template');
-  console.log('    $ knick-knack add general-readme Add a readme partial to the project in the current directory');
+  console.log('    $ knick-knack add general/readme Add a readme partial to the project in the current directory');
   console.log('    $ knick-knack init               Initialize a knick-knack templates directory');
   console.log();
 });
