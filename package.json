@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/haimich/knick-knack.git"
+    "url": "https://github.com/knick-knack/knick-knack.git"
   },
   "bin": {
     "knick-knack": "./bin/knick-knack.js",
@@ -47,9 +47,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/haimich/knick-knack/issues"
+    "url": "https://github.com/knick-knack/knick-knack/issues"
   },
-  "homepage": "https://github.com/haimich/knick-knack",
+  "homepage": "https://github.com/knick-knack/knick-knack",
   "scripts": {
     "test": "gulp test"
   }
