@@ -1,6 +1,6 @@
 var expect        = require('chai').expect,
     sut           = require('../../lib/template'),
-    exampleFolder = process.cwd() + '/spec/testdata/';
+    exampleFolder = process.cwd() + '/test/testdata/';
 
 describe('isValidProjectTemplate', function() {
   describe('when given a valid project folder', function() {

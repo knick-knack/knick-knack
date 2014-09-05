@@ -1,6 +1,6 @@
 var fs            = require('fs'),
     sut           = require('../../lib/generate'),
-    exampleFolder = process.cwd() + '/spec/testdata';
+    exampleFolder = process.cwd() + '/test/testdata';
 
 /*describe('createProject', function() {
   describe('when given a valid template', function() {

@@ -4,7 +4,7 @@ var gulp   = require('gulp'),
 
 var paths = {
   scripts: ['./lib/**/*.js', './bin/**/*.js'],
-  tests: ['./spec/**/*.js']
+  tests: ['./test/**/*.js']
 };
 
 gulp.task('test', function () {
