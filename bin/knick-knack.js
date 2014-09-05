@@ -74,15 +74,10 @@ switch (additionalArgs[0]) {
     var templates = list.listTemplates(directory);
   
     if (templates.length > 0) {
-      console.log(chalk.yellow('A valid template name must be specified.'));
-      console.log();
-      console.log(chalk.cyan.underline('Available templates:'));
-      console.log(templates.join('\n'));
-      console.log();
-      console.log('You can generate a new project with ' + chalk.blue.bold('knick-knack TEMPLATE'));
-      console.log();
-      console.log('For more information see https://github.com/haimich/knick-knack');
-      console.log();
+      console.log(chalk.cyan.underline('\nAvailable templates:'));
+      console.log(templates.join('\n') + '\n');
+      console.log('You can generate a new project with ' + chalk.blue.bold('knick-knack TEMPLATE') + '\n');
+      console.log('For more information see https://github.com/haimich/knick-knack\n');
     } else {
       console.log(logSymbols.warning + chalk.magenta(' No templates found in "' + directory + '".'));
       console.log();
