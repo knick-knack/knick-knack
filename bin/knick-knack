@@ -61,7 +61,7 @@ switch (additionalArgs[0]) {
       var continueQuestion = {
         name: 'continue',
         type: 'confirm',
-        message: 'May I suggest that you start the setup assistant for you?',
+        message: 'May I suggest that I start the setup assistant for you?',
         default: true
       };
       inquirer.prompt(continueQuestion, function(answer) {
