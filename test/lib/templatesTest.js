@@ -34,36 +34,59 @@ describe('readConfigFile()', function() {
   });
 });
 
-describe('getRequiredVariables()', function() {
-  describe('when reading a template without partials', function() {
-    it('should gather all variables used in the template', function() {
-      var result = sut.getRequiredVariables(exampleFolder, exampleFolder + '/python-config');
-      expect(result).not.to.be.empty;
-      expect(result).to.include({
-        name: 'user'
-      });
-      expect(result).not.to.include({
-        name: 'yourscript'
-      });
-    });
+describe('convertConfigVariables()', function() {
+  it('should convert config style variables to processable ones', function() {
+    var configVars = [{
+      myConfigVar: { default: 'def', ask: 'What def?' }
+    }, {
+      projectType: { default: 'maven', options: ['maven', 'grunt', 'gradle'] }
+    }];
     
-    it('should add all variables used in the config files', function() {
-      var result = sut.getRequiredVariables(exampleFolder, exampleFolder + '/python-config');
-      expect(result).not.to.be.empty;
-      expect(result).to.include({
-        name: 'name',
-        default: 'Sample'
-      });
-      expect(result).to.include({
-        name: 'gitlabGroup',
-        default: 'onetwothree',
-        ask: 'Name please?'
-      });
-      expect(result).to.include({
-        name: 'projectType',
-        default: 'maven',
-        options: ['maven', 'grunt', 'gradle']
-      });
+    var result = sut.convertConfigVariables(configVars);
+    
+    expect(result).to.contain({
+      name: 'myConfigVar',
+      default: 'def',
+      ask: 'What def?'
+    });
+    expect(result).to.contain({
+      name: 'projectType',
+      default: 'maven',
+      options: ['maven', 'grunt', 'gradle']
     });
   });
 });
+
+// describe('getRequiredVariables()', function() {
+//   describe('when reading a template without partials', function() {
+//     it('should gather all variables used in the template', function() {
+//       var result = sut.getRequiredVariables(exampleFolder, exampleFolder + '/python-config');
+//       expect(result).not.to.be.empty;
+//       expect(result).to.include({
+//         name: 'user'
+//       });
+//       expect(result).not.to.include({
+//         name: 'yourscript'
+//       });
+//     });
+    
+//     it('should add all variables used in the config files', function() {
+//       var result = sut.getRequiredVariables(exampleFolder, exampleFolder + '/python-config');
+//       expect(result).not.to.be.empty;
+//       expect(result).to.include({
+//         name: 'name',
+//         default: 'Sample'
+//       });
+//       expect(result).to.include({
+//         name: 'gitlabGroup',
+//         default: 'onetwothree',
+//         ask: 'Name please?'
+//       });
+//       expect(result).to.include({
+//         name: 'projectType',
+//         default: 'maven',
+//         options: ['maven', 'grunt', 'gradle']
+//       });
+//     });
+//   });
+// });
