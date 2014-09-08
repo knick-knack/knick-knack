@@ -1,5 +1,4 @@
-#!/bin/sh
-':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
+#!/usr/bin/env node
 
 'use strict';
 
@@ -87,16 +86,18 @@ switch (additionalArgs[0]) {
   
     break;
     
-  case 'check':
-    console.log('check');
-    break;
   case 'add':
     console.log('add ' + additionalArgs[1]);
     break;
+    
   case 'create':
     console.log('create ' + additionalArgs[1]);
     break;
     
   default: // not a command, maybe a template name?
-    generate.createProject(additionalArgs[0]);
+    try {
+      generate.createProject(additionalArgs[0]);
+    } catch (err) {
+      console.log(logSymbols.warning + ' ' + chalk.magenta(err));
+    }
 }
