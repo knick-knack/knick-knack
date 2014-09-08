@@ -1,6 +1,5 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $SCRIPT_DIR
-echo ${SCRIPT_DIR%/*}
-exit
-':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
+LIB_DIR=${SCRIPT_DIR%/*}
+EXECUTABLE=$LIB_DIR"/lib/cli.js"
+':' //; exec "$(command -v nodejs || command -v node)" "$EXECUTABLE" "$@"
