@@ -2,5 +2,5 @@ hosts:
   - 'TODO hostname dev'
 
 {{ name }}:
-  user: 'user'
+  user: {{ user }}
   password: 'pass'

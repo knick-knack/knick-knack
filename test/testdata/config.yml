@@ -1,2 +1,7 @@
 variables:
-  - name: My awesome project
+  - name:
+      default: "My awesome project"
+
+noProcess:
+  - '.npmignore'
+  - 'node_modules'
