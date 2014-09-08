@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/haimich/knick-knack.svg?branch=master)
+![Build Status](https://travis-ci.org/knick-knack/knick-knack.svg?branch=master)
 
 WORK IN PROGRESS! knick-knack
 ===========
