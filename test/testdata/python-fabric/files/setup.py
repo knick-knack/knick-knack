@@ -3,7 +3,7 @@ import sys
 from fabric.api import *
 from fabric.contrib import *
 
-import {%= name %}
+import {{ name }}
 
 @task(default=True)
 def system():

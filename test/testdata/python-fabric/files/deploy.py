@@ -3,7 +3,7 @@ import sys
 from fabric.api import *
 from fabric.contrib import *
 
-import {%= name %}
+import {{ name }}
 
 # Tell Fabric which tasks are exported by this file
 __all__ = ['deploy_config']

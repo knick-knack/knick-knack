@@ -1,6 +1,6 @@
 hosts: 
   - 'TODO hostname dev'
 
-{%= name %}:
+{{ name }}:
   user: 'user'
   password: 'pass'

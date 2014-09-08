@@ -1,6 +1,6 @@
 var expect        = require('chai').expect,
     sut           = require('../../lib/template'),
-    exampleFolder = process.cwd() + '/test/testdata/';
+    exampleFolder = process.cwd() + '/test/testdata';
 
 describe('isValidProjectTemplate', function() {
   describe('when given a valid project folder', function() {
@@ -30,6 +30,6 @@ describe('readConfigFile()', function() {
     expect(config.description).to.equal('Create a Fabric project.');
     expect(config.partials[0]).to.equal('general/readme');
     expect(config.partials[1]).to.equal('python/config');
-    expect(config.defaults.name).to.equal('test-project');
+    expect(config.variables.name).to.equal('test-project');
   });
 });

@@ -1,8 +1,8 @@
 description: Create a Fabric project.
 
+variables:
+  name: test-project
+
 partials:
   - general/readme
   - python/config
-
-defaults:
-  name: test-project

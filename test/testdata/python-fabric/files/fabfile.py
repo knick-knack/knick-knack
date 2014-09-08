@@ -3,7 +3,7 @@ import sys
 from fabric.api import *
 from fabric.contrib import *
 
-import setup, {%= name %}, deploy
+import setup, {{ name }}, deploy
 
 @task(default=True)
 def list():
