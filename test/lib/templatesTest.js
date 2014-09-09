@@ -1,4 +1,5 @@
 var expect        = require('chai').expect,
+    fs            = require('fs'),
     sut           = require('../../lib/template'),
     exampleFolder = process.cwd() + '/test/testdata';
 
@@ -70,27 +71,44 @@ describe('mergeVariableLists()', function() {
   });
 });
 
+describe('extractVariables()', function() {
+  it('should return the correct variables for test file 1', function() {
+    var file = fs.readFileSync(exampleFolder + '/python-config/files/config-dev.yml', 'utf8');
+    var vars = sut.extractVariables(file);
+    expect(vars.length).to.equal(2);
+    expect(vars).to.contain({ name: 'name' });
+    expect(vars).to.contain({ name: 'user' });
+  });
+  
+  it('should return the correct variables for test file 2', function() {
+    var file = fs.readFileSync(exampleFolder + '/python-config/files/config-prod.yml', 'utf8');
+    var vars = sut.extractVariables(file);
+    expect(vars.length).to.equal(1);
+    expect(vars).to.contain({ name: 'name' });
+  });
+});
 
-/*describe('extractVariablesFromFiles()', function() {
-  describe('when given no noProcess field', function() {
-    it('should extract all variables found in the files and folders', function() {
-      var variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config');
-      expect(variables).to.include({ name: 'name' });
-      expect(variables).to.include({ name: 'user' });
-      expect(variables).to.include({ name: 'yourscript' });
-      expect(variables).not.to.include({ name: 'badDelimiters' });
-    });
-  });
-  describe('when given a noProcess field', function() {
-    it('should extract all variables found in files and folders not affected by the filtering', function() {
-      var noProcess = ['node_modules', '.gitignore'],
-          variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
-      expect(variables).to.include({ name: 'name' });
-      expect(variables).to.include({ name: 'user' });
-      expect(variables).not.to.include({ name: 'yourscript' });
-    });
-  });
-});*/
+
+// describe('extractVariablesFromFiles()', function() {
+//   describe('when given no noProcess field', function() {
+//     it('should extract all variables found in the files and folders', function() {
+//       var variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config');
+//       expect(variables).to.include({ name: 'name' });
+//       expect(variables).to.include({ name: 'user' });
+//       expect(variables).to.include({ name: 'yourscript' });
+//       expect(variables).not.to.include({ name: 'badDelimiters' });
+//     });
+//   });
+//   describe('when given a noProcess field', function() {
+//     it('should extract all variables found in files and folders not affected by the filtering', function() {
+//       var noProcess = ['node_modules', '.gitignore'],
+//           variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
+//       expect(variables).to.include({ name: 'name' });
+//       expect(variables).to.include({ name: 'user' });
+//       expect(variables).not.to.include({ name: 'yourscript' });
+//     });
+//   });
+// });
 
 // describe('getRequiredVariables()', function() {
 //   describe('when reading a template without partials', function() {
