@@ -16,7 +16,8 @@
     "log-symbols": "~1.0.0",
     "multiline": "~0.3.4",
     "js-yaml": "~3.1.0",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "isbinaryfile": "~2.0.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
