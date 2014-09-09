@@ -57,6 +57,41 @@ describe('convertConfigVariables()', function() {
   });
 });
 
+describe('mergeVariableLists()', function() {
+  it('should return the union of both variable lists', function() {
+    var list1 = [{ name: 'name' }, { name: 'user' }],
+        list2 = [{ name: 'myName' }, { name: 'user' }];
+        
+    var result = sut.mergeVariableLists(list1, list2);
+    expect(result.length).to.equal(3);
+    expect(result).to.contain({ name: 'name' });
+    expect(result).to.contain({ name: 'user' });
+    expect(result).to.contain({ name: 'myName' });
+  });
+});
+
+
+/*describe('extractVariablesFromFiles()', function() {
+  describe('when given no noProcess field', function() {
+    it('should extract all variables found in the files and folders', function() {
+      var variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config');
+      expect(variables).to.include({ name: 'name' });
+      expect(variables).to.include({ name: 'user' });
+      expect(variables).to.include({ name: 'yourscript' });
+      expect(variables).not.to.include({ name: 'badDelimiters' });
+    });
+  });
+  describe('when given a noProcess field', function() {
+    it('should extract all variables found in files and folders not affected by the filtering', function() {
+      var noProcess = ['node_modules', '.gitignore'],
+          variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
+      expect(variables).to.include({ name: 'name' });
+      expect(variables).to.include({ name: 'user' });
+      expect(variables).not.to.include({ name: 'yourscript' });
+    });
+  });
+});*/
+
 // describe('getRequiredVariables()', function() {
 //   describe('when reading a template without partials', function() {
 //     it('should gather all variables used in the template', function() {
