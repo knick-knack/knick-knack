@@ -35,80 +35,60 @@ describe('readConfigFile()', function() {
   });
 });
 
-describe('convertConfigVariables()', function() {
-  it('should convert config style variables to processable ones', function() {
-    var configVars = [{
-      myConfigVar: { default: 'def', ask: 'What def?' }
-    }, {
-      projectType: { default: 'maven', options: ['maven', 'grunt', 'gradle'] }
-    }];
-    
-    var result = sut.convertConfigVariables(configVars);
-    
-    expect(result).to.contain({
-      name: 'myConfigVar',
-      default: 'def',
-      ask: 'What def?'
-    });
-    expect(result).to.contain({
-      name: 'projectType',
-      default: 'maven',
-      options: ['maven', 'grunt', 'gradle']
-    });
-  });
-});
-
-describe('mergeVariableLists()', function() {
-  it('should return the union of both variable lists', function() {
-    var list1 = [{ name: 'name' }, { name: 'user' }],
-        list2 = [{ name: 'myName' }, { name: 'user' }];
-        
-    var result = sut.mergeVariableLists(list1, list2);
-    expect(result.length).to.equal(3);
-    expect(result).to.contain({ name: 'name' });
-    expect(result).to.contain({ name: 'user' });
-    expect(result).to.contain({ name: 'myName' });
-  });
-});
-
 describe('extractVariables()', function() {
   it('should return the correct variables for test file 1', function() {
     var file = fs.readFileSync(exampleFolder + '/python-config/files/config-dev.yml', 'utf8');
     var vars = sut.extractVariables(file);
-    expect(vars.length).to.equal(2);
-    expect(vars).to.contain({ name: 'name' });
-    expect(vars).to.contain({ name: 'user' });
+    expect(Object.keys(vars).length).to.equal(2);
+    expect(vars.name).to.exist;
+    expect(vars.user).to.exist;
   });
   
   it('should return the correct variables for test file 2', function() {
     var file = fs.readFileSync(exampleFolder + '/python-config/files/config-prod.yml', 'utf8');
     var vars = sut.extractVariables(file);
-    expect(vars.length).to.equal(1);
-    expect(vars).to.contain({ name: 'name' });
+    expect(Object.keys(vars).length).to.equal(1);
+    expect(vars.name).to.exist;
   });
 });
 
-
-// describe('extractVariablesFromFiles()', function() {
-//   describe('when given no noProcess field', function() {
-//     it('should extract all variables found in the files and folders', function() {
-//       var variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config');
-//       expect(variables).to.include({ name: 'name' });
-//       expect(variables).to.include({ name: 'user' });
-//       expect(variables).to.include({ name: 'yourscript' });
-//       expect(variables).not.to.include({ name: 'badDelimiters' });
-//     });
-//   });
-//   describe('when given a noProcess field', function() {
-//     it('should extract all variables found in files and folders not affected by the filtering', function() {
-//       var noProcess = ['node_modules', '.gitignore'],
-//           variables = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
-//       expect(variables).to.include({ name: 'name' });
-//       expect(variables).to.include({ name: 'user' });
-//       expect(variables).not.to.include({ name: 'yourscript' });
-//     });
-//   });
-// });
+describe('extractVariablesFromFiles()', function() {
+  describe('when given no noProcess field', function() {
+    it('should extract all variables found in the files and folders', function() {
+      var vars = sut.extractVariablesFromFiles(exampleFolder + '/python-config');
+      expect(Object.keys(vars).length).to.equal(3);
+      expect(vars.name).to.exist;
+      expect(vars.user).to.exist;
+      expect(vars.yourscript).to.exist;
+      expect(vars.badDelimiters).to.not.exist;
+    });
+  });
+  describe('when given a noProcess field', function() {
+    it('should extract all variables found in files and folders not affected by the filtering', function() {
+      var noProcess = ['node_modules', '.gitignore'],
+          vars = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
+      expect(vars.name).to.exist;
+      expect(vars.user).to.exist;
+      expect(vars.yourscript).to.not.exist;
+    });
+    
+    it('should extract all variables found in files and folders filtered using wildcards', function() {
+      var noProcess = ['*modules*'],
+          vars = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
+      expect(vars.name).to.exist;
+      expect(vars.user).to.exist;
+      expect(vars.yourscript).to.not.exist;
+    });
+    
+    it('should extract all variables found in files and folders filtered using wildcards', function() {
+      var noProcess = ['config*'],
+          vars = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
+      expect(vars.name).to.not.exist;
+      expect(vars.user).to.not.exist;
+      expect(vars.yourscript).to.exist;
+    });
+  });
+});
 
 // describe('getRequiredVariables()', function() {
 //   describe('when reading a template without partials', function() {
