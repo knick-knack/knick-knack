@@ -1,4 +1,8 @@
-### 0.0.x (2014-xx-xx)
+# knick-knack Changelog
 
-#### Bug Fixes
-#### Features
+## 0.0.x (2014-xx-xx)
+### Bug Fixes
+- ...
+
+### Features
+- 
