@@ -63,9 +63,10 @@ describe('extractVariablesFromFiles()', function() {
       expect(vars.badDelimiters).to.not.exist;
     });
   });
+  
   describe('when given a noProcess field', function() {
     it('should extract all variables found in files and folders not affected by the filtering', function() {
-      var noProcess = ['node_modules', '.gitignore'],
+      var noProcess = ['not_modules', '.gitignore'],
           vars = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
       expect(vars.name).to.exist;
       expect(vars.user).to.exist;
@@ -89,37 +90,3 @@ describe('extractVariablesFromFiles()', function() {
     });
   });
 });
-
-// describe('getRequiredVariables()', function() {
-//   describe('when reading a template without partials', function() {
-//     it('should gather all variables used in the template', function() {
-//       var result = sut.getRequiredVariables(exampleFolder, exampleFolder + '/python-config');
-//       expect(result).not.to.be.empty;
-//       expect(result).to.include({
-//         name: 'user'
-//       });
-//       expect(result).not.to.include({
-//         name: 'yourscript'
-//       });
-//     });
-    
-//     it('should add all variables used in the config files', function() {
-//       var result = sut.getRequiredVariables(exampleFolder, exampleFolder + '/python-config');
-//       expect(result).not.to.be.empty;
-//       expect(result).to.include({
-//         name: 'name',
-//         default: 'Sample'
-//       });
-//       expect(result).to.include({
-//         name: 'gitlabGroup',
-//         default: 'onetwothree',
-//         ask: 'Name please?'
-//       });
-//       expect(result).to.include({
-//         name: 'projectType',
-//         default: 'maven',
-//         options: ['maven', 'grunt', 'gradle']
-//       });
-//     });
-//   });
-// });

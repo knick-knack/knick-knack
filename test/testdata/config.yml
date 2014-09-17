@@ -4,4 +4,4 @@ variables:
 
 noProcess:
   - '.npmignore'
-  - 'node_modules'
+  - 'not_modules'
