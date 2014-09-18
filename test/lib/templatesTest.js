@@ -3,17 +3,17 @@ var expect        = require('chai').expect,
     sut           = require('../../lib/template'),
     exampleFolder = process.cwd() + '/test/testdata';
 
-describe('isValidProjectTemplate', function() {
+describe('isTemplate', function() {
   describe('when given a valid project folder', function() {
     it('should return true', function() {
-      expect(sut.isValidProjectTemplate(exampleFolder + '/python-fabric')).to.be.true;
+      expect(sut.isTemplate(exampleFolder + '/python-fabric')).to.be.true;
     });
   });
 
   describe('when given an invalid project folder', function() {
     it('should return false for invalid folders', function() {
-      expect(sut.isValidProjectTemplate(exampleFolder + '/invalid')).to.be.false;
-      expect(sut.isValidProjectTemplate(exampleFolder)).to.be.false;
+      expect(sut.isTemplate(exampleFolder + '/invalid')).to.be.false;
+      expect(sut.isTemplate(exampleFolder)).to.be.false;
     });
   });
 });
@@ -43,7 +43,7 @@ describe('extractVariables()', function() {
     expect(vars.name).to.exist;
     expect(vars.user).to.exist;
   });
-  
+
   it('should return the correct variables for test file 2', function() {
     var file = fs.readFileSync(exampleFolder + '/python-config/files/config-prod.yml', 'utf8');
     var vars = sut.extractVariables(file);
@@ -63,7 +63,7 @@ describe('extractVariablesFromFiles()', function() {
       expect(vars.badDelimiters).to.not.exist;
     });
   });
-  
+
   describe('when given a noProcess field', function() {
     it('should extract all variables found in files and folders not affected by the filtering', function() {
       var noProcess = ['not_modules', '.gitignore'],
@@ -72,7 +72,7 @@ describe('extractVariablesFromFiles()', function() {
       expect(vars.user).to.exist;
       expect(vars.yourscript).to.not.exist;
     });
-    
+
     it('should extract all variables found in files and folders filtered using wildcards', function() {
       var noProcess = ['*modules*'],
           vars = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
@@ -80,7 +80,7 @@ describe('extractVariablesFromFiles()', function() {
       expect(vars.user).to.exist;
       expect(vars.yourscript).to.not.exist;
     });
-    
+
     it('should extract all variables found in files and folders filtered using wildcards', function() {
       var noProcess = ['config*'],
           vars = sut.extractVariablesFromFiles(exampleFolder + '/python-config', noProcess);
