@@ -1,12 +1,49 @@
-var fs            = require('fs'),
-    cmd_generate  = require('../../lib/generate'),
-    exampleFolder = process.cwd() + '/test/testdata',
-    expect        = require('chai').expect;
+var codebase      = '../../lib/',
+    testbase      = __dirname + '/../testdata/',
+    expect        = require('chai').expect,
+    cmd_generate  = require(codebase + 'generate'),
+    fs            = require('fs'),
+    fsUtil        = require(codebase + 'util/fs');
 
-describe('generateProject', function () {
-  describe('when given an invalid template', function () {
-    it('should throw an exception', function () {
-      expect(cmd_generate.bind(this, '/tmp', 'yoda', true)).to.throw(Error);
-    });
+describe('command generate', function () {
+
+  it('should call before and after hooks', function () {
+    var beforeCalled, afterCalled;
+
+    cmd_generate({
+      before: function () { beforeCalled = true; },
+      after:  function () { afterCalled  = true; }
+    }, { destination: '/tmp/foo' });
+
+    expect(beforeCalled && afterCalled).to.be.true;
   });
-})
+
+  describe('copy files', function () {
+
+    var path = '/tmp/foo/';
+
+    beforeEach(function () {
+      cmd_generate(testbase + 'sample_project', { destination: path }); // TODO mockfs
+    });
+
+    afterEach(function () {
+      fsUtil.rmdir(path);
+    });
+
+    it('should copy the template files', function () {
+      expect(fsUtil.isFile(path + 'bla.txt')).to.be.true;
+      expect(fsUtil.isFile(path + 'sub/blubb.txt')).to.be.true;
+    });
+
+    it('should not copy control files like config.yml and index.js', function () {
+      expect(fsUtil.isFile(path + 'config.yml')).to.be.false;
+      expect(fsUtil.isFile(path + 'index.js')).to.be.false;
+    });
+
+    it('should copy control files in deeper directory levels', function () {
+      expect(fsUtil.isFile(path + 'sub/index.js')).to.be.true;
+    });
+
+  });
+
+});

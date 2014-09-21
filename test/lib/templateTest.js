@@ -12,9 +12,11 @@ describe('template()', function () {
     }).to.throw(Error);
   });
 
-  it('should return a template object with description', function () {
-    var res = template(testbase + 'sample_project');
+  it('should return a template object with path and description', function () {
+    var path = testbase + 'sample_project';
+    var res = template(path);
     expect(res).to.be.ok;
+    expect(res.path).to.equal(path);
     expect(typeof res.description).to.equal('string');
   });
 
@@ -28,6 +30,13 @@ describe('template()', function () {
     var res = template(testbase + 'general/readme');
     expect(typeof res.before).to.equal('function');
     expect(res.before.toString().indexOf('noop') !== -1).to.be.true;
+
+    var wasCalled;
+    res.before(res, function () {
+      wasCalled = true;
+    });
+
+    expect(wasCalled).to.be.true; // TODO async
   });
 
 });
