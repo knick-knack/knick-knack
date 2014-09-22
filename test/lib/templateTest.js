@@ -4,7 +4,7 @@ var template = require('../../lib/template'),
     testbase = __dirname + '/../testdata/',
     expect   = require('chai').expect;
 
-describe('template()', function () {
+describe.skip('template()', function () {
 
   it('should throw if no template was given', function () {
     expect(function () {

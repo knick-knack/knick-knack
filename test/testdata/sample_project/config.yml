@@ -1,4 +1,10 @@
 description: Create a sample project.
 
+variables:
+  name:
+    message: Projekt-Name?
+    default: sample
+    type:    text
+
 partials:
   - general/readme

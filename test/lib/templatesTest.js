@@ -18,15 +18,9 @@ describe('isTemplate', function() {
   });
 });
 
-describe('readDescription()', function() {
-  it('should output the description from the config file', function() {
-    expect(sut.readDescription(exampleFolder + '/python-fabric')).to.equal('Create a Fabric project.');
-  });
-});
-
-describe('readConfigFile()', function() {
+describe('readConfig()', function() {
   it('should read the config file and return the content as an object', function() {
-    var config = sut.readConfigFile(exampleFolder + '/python-fabric');
+    var config = sut.readConfig(exampleFolder + '/python-fabric');
     expect(config).to.be.ok;
     expect(config.description).to.equal('Create a Fabric project.');
     expect(config.partials).to.include('general/readme');
