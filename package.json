@@ -24,19 +24,15 @@
     "chai": "~1.9.1",
     "gulp": "~3.8.7",
     "gulp-jshint": "~1.8.4",
-    "gulp-mocha": "~1.0.0",
-    "mock-fs": "~2.3.1"
-  },
-  "directories": {
-    "example": "examples"
+    "gulp-mocha": "~1.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/knick-knack/knick-knack.git"
   },
   "bin": {
-    "knick-knack": "./bin/knick-knack.js",
-    "kk": "./bin/knick-knack.js"
+    "knick-knack": "./bin/knick-knack",
+    "kk": "./bin/knick-knack"
   },
   "preferGlobal": true,
   "keywords": [
