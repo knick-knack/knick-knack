@@ -31,8 +31,8 @@
     "url": "https://github.com/knick-knack/knick-knack.git"
   },
   "bin": {
-    "knick-knack": "./bin/knick-knack",
-    "kk": "./bin/knick-knack"
+    "knick-knack": "./bin/knick-knack.js",
+    "kk": "./bin/knick-knack.js"
   },
   "preferGlobal": true,
   "keywords": [
