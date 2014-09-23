@@ -1,10 +1,11 @@
+#!/usr/bin/env node
 'use strict';
 
 var program    = require('commander'),
     chalk      = require('chalk'),
     logSymbols = require('log-symbols'),
     inquirer   = require('inquirer'),
-    fsUtil     = require('./util/fs');
+    fsUtil     = require('../lib/util/fs');
 
 var projectVersion = require('../package.json').version,
     defaultDir     = process.env.HOME + '/.knick-knack';
@@ -29,9 +30,9 @@ program.parse(process.argv);
 var additionalArgs = program.args,
     directory      = program.directory;
 
-var cmd_list     = require('./list'),
-    cmd_init     = require('./init'),
-    cmd_generate = require('./generate');
+var cmd_list     = require('../lib/list'),
+    cmd_init     = require('../lib/init'),
+    cmd_generate = require('../lib/generate');
 
 function folderInvalid(name) {
   if (! fsUtil.isDirectory(name) && name !== defaultDir && additionalArgs[0] !== 'init') {
