@@ -24,7 +24,8 @@
     "chai": "~1.9.1",
     "gulp": "~3.8.7",
     "gulp-jshint": "~1.8.4",
-    "gulp-mocha": "~1.0.0"
+    "gulp-mocha": "~1.0.0",
+    "sinon": "^1.12.1"
   },
   "repository": {
     "type": "git",
