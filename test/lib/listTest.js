@@ -1,3 +1,5 @@
+'use strict';
+
 var cmd_list = require('../../lib/list'),
     exampleFolder = process.cwd() + '/test/testdata',
     expect = require('chai').expect;
