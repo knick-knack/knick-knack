@@ -97,5 +97,6 @@ default: // not a command, maybe a template name?
     cmd_generate(directory + '/' + additionalArgs[0]);
   } catch (err) {
     console.log(logSymbols.warning + ' ' + chalk.magenta(err));
+    throw err;
   }
 }
