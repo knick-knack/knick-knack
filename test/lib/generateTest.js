@@ -1,26 +1,51 @@
 var codebase      = '../../lib/',
     testbase      = __dirname + '/../testdata/',
+    testdest      = '/tmp/knick-knack-test',
     expect        = require('chai').expect,
+    sinon         = require('sinon'),
     cmd_generate  = require(codebase + 'generate'),
     fs            = require('fs'),
     fsUtil        = require(codebase + 'util/fs');
 
 describe('command generate', function () {
 
-  it('should throw an error if no name was given', function () {
+  var sandbox;
+
+  beforeEach(function () {
+    sandbox = sinon.sandbox.create();
+  });
+
+  afterEach(function () {
+    sandbox.restore();
+  });
+
+  it('should throw an error if no name was given in the config file', function () {
+    sandbox.spy(cmd_generate, '_processFiles');
+    
     expect(function() { cmd_generate(testbase + 'sample_project'); }).to.throw(Error);
   });
 
-  // it('should call before and after hooks', function () {
-  //   var beforeCalled, afterCalled;
+  it('should not require a process.js', function () {
+    sandbox.spy(cmd_generate, '_processFiles');
+    expect(function () {
+      cmd_generate(testbase + 'general/no-process/');
+    }).to.not.throw();
+  });
 
-  //   cmd_generate({
-  //     before: function () { beforeCalled = true; },
-  //     after:  function () { afterCalled  = true; }
-  //   }, { destination: '/tmp/foo' });
+  it('should call before and after hooks', function () {
+    var beforeCalled, afterCalled;
 
-  //   expect(beforeCalled && afterCalled).to.be.true;
-  // });
+    // var tplPath = testbase + 'general/readme/',
+    //     tplProcessFile = tplPath + 'process.js',
+    //     tplProcess = require(tplProcessFile);
+    
+    // tplProcess.before = function () { beforeCalled = true; };
+    // tplProcess.after = function () { afterCalled = true; };
+
+    // cmd_generate(tplPath, testdest);
+
+    // expect(beforeCalled && afterCalled).to.be.true;
+  });
 
   // describe('copy files', function () {
 
