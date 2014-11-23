@@ -105,6 +105,15 @@ describe('template', function() {
         expect(tpl.before).to.equal(tplProcess.before);
         expect(tpl.after).to.equal(tplProcess.after);
       });
+      
+      it('should return a template object with a files property when directory present', function() {
+        var tpl = sut.loadTemplate(testbase + 'valid');
+        expect(tpl.files).to.equal(testbase + 'valid/files');
+      });
+      
+      it('should treat the files folder as being optional', function() {
+        expect(sut.loadTemplate(testbase + 'valid-no-process').files).to.not.be.ok;
+      });
     });
   });
   
