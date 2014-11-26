@@ -8,6 +8,7 @@ var paths = {
 };
 
 gulp.task('test', function () {
+  process.env.NODE_ENV = 'test';
   return gulp.src(paths.tests, { read: false })
     .pipe(mocha({
       reporter: 'nyan'
