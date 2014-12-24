@@ -1,13 +1,13 @@
 'use strict';
 
-var codebase      = '../../lib/',
-    testbase      = __dirname + '/../testdata/',
-    testdest      = '/tmp/knick-knack-test',
-    expect        = require('chai').expect,
-    sinon         = require('sinon'),
-    cmd_generate  = require(codebase + 'generate'),
-    fs            = require('fs'),
-    fsUtil        = require(codebase + 'util/fs');
+var codebase = '../../lib/',
+    testbase = __dirname + '/../testdata/template/',
+    testdest = '/tmp/knick-knack-test',
+    expect   = require('chai').expect,
+    sinon    = require('sinon'),
+    sut      = require(codebase + 'generate'),
+    fs       = require('fs'),
+    fsUtil   = require(codebase + 'util/fs');
 
 describe.skip('command generate', function () {
 
@@ -22,15 +22,15 @@ describe.skip('command generate', function () {
   });
 
   it('should throw an error if no name was given in the config file', function () {
-    sandbox.spy(cmd_generate, '_processFiles');
-    
-    expect(function() { cmd_generate(testbase + 'sample_project'); }).to.throw(Error);
+    sandbox.spy(sut, '_processFiles');
+
+    expect(function() { sut(testbase + 'sample_project'); }).to.throw(Error);
   });
 
   it('should not require a process.js', function () {
-    sandbox.spy(cmd_generate, '_processFiles');
+    sandbox.spy(sut, '_processFiles');
     expect(function () {
-      cmd_generate(testbase + 'general/no-process/');
+      sut(testbase + 'general/no-process/');
     }).to.not.throw();
   });
 
@@ -40,11 +40,11 @@ describe.skip('command generate', function () {
     // var tplPath = testbase + 'general/readme/',
     //     tplProcessFile = tplPath + 'process.js',
     //     tplProcess = require(tplProcessFile);
-    
+
     // tplProcess.before = function () { beforeCalled = true; };
     // tplProcess.after = function () { afterCalled = true; };
 
-    // cmd_generate(tplPath, testdest);
+    // sut(tplPath, testdest);
 
     // expect(beforeCalled && afterCalled).to.be.true;
   });
@@ -54,7 +54,7 @@ describe.skip('command generate', function () {
   //   var path = '/tmp/foo/';
 
   //   beforeEach(function () {
-  //     cmd_generate(testbase + 'sample_project', { destination: path }); // TODO mockfs
+  //     sut(testbase + 'sample_project', { destination: path }); // TODO mockfs
   //   });
 
   //   afterEach(function () {
@@ -77,4 +77,60 @@ describe.skip('command generate', function () {
 
   // });
 
+});
+
+describe('extractVariables()', function() {
+  it('should return the correct variables for test file 1', function() {
+    var file = fs.readFileSync(testbase + '/python-config/files/config-dev.yml', 'utf8');
+    var vars = sut._extractVariables(file);
+    expect(Object.keys(vars).length).to.equal(2);
+    expect(vars.name).to.exist;
+    expect(vars.user).to.exist;
+  });
+
+  it('should return the correct variables for test file 2', function() {
+    var file = fs.readFileSync(testbase + '/python-config/files/config-prod.yml', 'utf8');
+    var vars = sut._extractVariables(file);
+    expect(Object.keys(vars).length).to.equal(1);
+    expect(vars.name).to.exist;
+  });
+});
+
+describe('extractVariablesFromFiles()', function() {
+  describe('when given no noProcess field', function() {
+    it('should extract all variables found in the files and folders', function() {
+      var vars = sut._extractVariablesFromFiles(testbase + '/python-config');
+      expect(Object.keys(vars).length).to.equal(3);
+      expect(vars.name).to.exist;
+      expect(vars.user).to.exist;
+      expect(vars.yourscript).to.exist;
+      expect(vars.badDelimiters).to.not.exist;
+    });
+  });
+
+  describe('when given a noProcess field', function() {
+    it('should extract all variables found in files and folders not affected by the filtering', function() {
+      var noProcess = ['not_modules', '.gitignore'],
+          vars = sut._extractVariablesFromFiles(testbase + '/python-config', noProcess);
+      expect(vars.name).to.exist;
+      expect(vars.user).to.exist;
+      expect(vars.yourscript).to.not.exist;
+    });
+
+    it('should extract all variables found in files and folders filtered using wildcards', function() {
+      var noProcess = ['*modules*'],
+          vars = sut._extractVariablesFromFiles(testbase + '/python-config', noProcess);
+      expect(vars.name).to.exist;
+      expect(vars.user).to.exist;
+      expect(vars.yourscript).to.not.exist;
+    });
+
+    it('should extract all variables found in files and folders filtered using wildcards', function() {
+      var noProcess = ['config*'],
+          vars = sut._extractVariablesFromFiles(testbase + '/python-config', noProcess);
+      expect(vars.name).to.not.exist;
+      expect(vars.user).to.not.exist;
+      expect(vars.yourscript).to.exist;
+    });
+  });
 });
