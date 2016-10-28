@@ -12,3 +12,4 @@ A language agnostic project scaffolding tool similar to grunt-init and yeoman. W
 * http://jamesbond.wikia.com/wiki/Nick_Nack
 
 ![keep calm](keepcalm.png)
+
